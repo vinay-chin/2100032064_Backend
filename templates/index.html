@@ -22,14 +22,44 @@
 </head>
 
 <body class="bg-gray-100 bg-gray-800">
-    <div class="flex flex-col items-center justify-center h-screen">
+    <div class="flex flex-col items-center justify-center h-full">
         <h1 class="text-4xl font-bold mb-4 text-white ">Welcome to My Website</h1>
         <p class="text-lg text-gray-600 text-gray-400">Thank you for visiting!</p>
+
+        <form method="POST" action="/join">
+        <h1 class="text-4xl font-bold mb-4 text-white ">Get country by join</h1>
+
+            <div class="mb-3">
+                <label for="country"
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Country</label>
+                <input type="text"
+                    class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
+                    id="country_name" name="country_name" required>
+            </div>
+            <button type="submit"
+                class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Get country details by join
+                </button>
+        </form>
+
+        <form method="POST" action="/not_join">
+        <h1 class="text-4xl font-bold mb-4 text-white ">Get country by not join</h1>
+
+            <div class="mb-3">
+                <label for="country"
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Country</label>
+                <input type="text"
+                    class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
+                    id="country_name" name="country_name" required>
+            </div>
+            <button type="submit"
+                class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Get country details by not join
+                </button>
+        </form>
 
         <form method="POST" action="{{ url_for('add_location') }}">
             <div class="mb-3">
                 <label for="country"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">Country</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Country</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="country_name" name="country_name" required>
@@ -37,7 +67,7 @@
 
             <div class="mb-3">
                 <label for="country"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">Country Id</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Country Id</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="country_id" name="country_id" required>
@@ -45,7 +75,7 @@
 
             <div class="mb-3">
                 <label for="country"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">Region Id</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Region Id</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="region_id" name="region_id" required>
@@ -53,28 +83,28 @@
             
             <div class="mb-3">
                 <label for="street_address"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">Street Address</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Street Address</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="street_address" name="street_address" required>
             </div>
             <div class="mb-3">
                 <label for="city"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">City</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">City</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="city" name="city" required>
             </div>
             <div class="mb-3">
                 <label for="postal_code"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">Postal Code</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">Postal Code</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="postal_code" name="postal_code" required>
             </div>
             <div class="mb-3">
                 <label for="state_province"
-                    class="form-label inline-block mb-2 text-lg text-gray-700 ">State province</label>
+                    class="form-label inline-block mb-2 text-lg text-gray-400 ">State province</label>
                 <input type="text"
                     class="form-control w-full px-3 py-2 rounded-md border border-gray-300 border-gray-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600"
                     id="state_province" name="state_province" required>
@@ -110,7 +140,7 @@
             <tbody>
                 {% for location in locations %}
                 <tr>
-                    <th scope="row" class="px-6 py-4 text-gray-500 font-medium text-gray-700  whitespace-nowrap">{{
+                    <th scope="row" class="px-6 py-4 text-gray-500 font-medium text-gray-400  whitespace-nowrap">{{
                         location[0] }}</th>
                     <td class="px-6 py-4 text-gray-500">{{ location[1] }}</td>
                     <td class="px-6 py-4 text-gray-500">{{ location[2] }}</td>
@@ -140,7 +170,7 @@
             <tbody>
                 {% for country in countries %}
                 <tr>
-                    <th scope="row" class="px-6 py-4 text-gray-500 font-medium text-gray-700  whitespace-nowrap">{{
+                    <th scope="row" class="px-6 py-4 text-gray-500 font-medium text-gray-400  whitespace-nowrap">{{
                         country[0] }}</th>
                     <td class="px-6 py-4 text-gray-500">{{ country[1] }}</td>
                     <td class="px-6 py-4 text-gray-500">{{ country[2] }}</td>

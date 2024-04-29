@@ -5,7 +5,6 @@ app = Flask(__name__)
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
-# Create a 'locations' table if it doesn't exist
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS locations (
         location_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -17,7 +16,6 @@ cursor.execute('''
     )
 ''')
 
-# Create a 'countries' table if it doesn't exist
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS countries (
         country_id TEXT NOT NULL,
@@ -45,6 +43,30 @@ def home():
 
     return render_template('index.html', locations=locations, countries=countries)
 
+@app.route('/join', methods=['POST'])
+def query_country_using_join():
+    country_name = request.form['country_name']
+    with app.app_context():
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT locations.*, countries.country_name, countries.region_id 
+                FROM locations 
+                JOIN countries ON locations.country_id = countries.country_id 
+                WHERE countries.country_name = ?
+            ''', (country_name,))
+            result = cursor.fetchall()
+    return render_template('result.html', result=result)
+
+@app.route('/not_join', methods=['POST'])
+def query_country_not_using_join():
+    country_name = request.form['country_name']
+    with app.app_context():
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM countries WHERE country_name = ?", (country_name,))
+        result = cursor.fetchall()
+    return render_template('result.html', result=result)
 
 @app.route('/add_location', methods=['POST'])
 def add_location():
@@ -56,17 +78,15 @@ def add_location():
         city = request.form['city']
         state_province = request.form['state_province']
         postal_code = request.form['postal_code']
-        # Add checks for other location data if needed
 
         with app.app_context():
             conn = sqlite3.connect('database.db')
             cursor = conn.cursor()
 
-            # Insert data into locations table (assuming postal code, city, state/province exist)
             cursor.execute("""
                 INSERT INTO locations (street_address, postal_code, city, state_province, country_id)
                 VALUES (?, ?, ?, ?, ?)
-            """, (street_address, postal_code, city, state_province, 1))  # Replace with actual values when form fields are added
+            """, (street_address, postal_code, city, state_province, 1))
 
             country_id = request.form['country_id'].upper()
             country_name = request.form['country_name']
@@ -77,9 +97,9 @@ def add_location():
             conn.commit()
             conn.close()
 
-        return f"Location '{street_address}' added successfully!"  # Adjust success message
+        return f"Location '{street_address}' added successfully!" 
 
-    return f"Invalid request method: {request.method}"  # Handle invalid requests
+    return f"Invalid request method: {request.method}" 
 
 
 if __name__ == '__main__':
